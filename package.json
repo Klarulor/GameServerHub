@@ -1,0 +1,28 @@
+{
+  "name": "serverhub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "run": "npx ts-node src",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0"
+  },
+  "author": "klarulor",
+  "license": "MIT",
+  "dependencies": {
+    "@types/yaml": "^1.9.7",
+    "bit-wrapper": "^1.0.0",
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security",
+    "klarusocket": "^1.0.3",
+    "yaml": "^2.1.1"
+  }
+}
