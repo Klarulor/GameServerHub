@@ -8,7 +8,7 @@
     "/dist"
   ],
   "scripts": {
-    "run": "npx ts-node src",
+    "start": "npx ts-node src",
     "build": "tsc"
   },
   "devDependencies": {
