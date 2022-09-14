@@ -1,0 +1,6 @@
+Server>
+    <hardware_message>: IStateCheckHarwareMessage::IHardwareMessage => IReplyMessage
+    <custom_data_update>: NULL => IServerDataMessage
+
+Client> 
+    <init>: IInitMessage => IReplyMessage

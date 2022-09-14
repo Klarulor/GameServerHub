@@ -4,3 +4,7 @@ export enum CommunicationRequestType{
     PLUGIN_COMMUNICATION = 2,
     EXTERNAL_COMMAND = 3
 }
+
+export enum HardwareMessageType{
+    STATUS_CHECK = 0
+}

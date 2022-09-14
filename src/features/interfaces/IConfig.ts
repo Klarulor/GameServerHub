@@ -3,6 +3,7 @@ import {GameType, Ip} from "../Types";
 export interface IConfig{
     socket: ISocketConfig;
     discord: IDiscordConfig;
+    serverController: IServerControllerConfig;
     servers: {
         [tag: string]: IServer;
     };
@@ -30,6 +31,7 @@ interface IDiscordMainGuildConfig{
     guildId: string;
     channelId: string;
     messageId: string;
+    updateTimeMS: number;
 }
 
 interface IDiscordBotConfig{
@@ -39,6 +41,10 @@ interface IDiscordBotConfig{
 interface IDiscordServerConfig{
     bot: IDiscordBotConfig;
     channels: string[]
+}
+
+interface IServerControllerConfig{
+    updateTimeMS: number;
 }
 
 interface IServer{
