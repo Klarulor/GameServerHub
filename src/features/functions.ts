@@ -1,5 +1,5 @@
-import { SERVERS } from "..";
 import { IServer } from "./interfaces/servers/IServer";
+import { SERVERS } from "./serverController";
 
 export function getServer(con: any): IServer | null{
     const array = Object.values(SERVERS).filter(x => x.con == con);
