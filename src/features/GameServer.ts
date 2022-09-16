@@ -5,6 +5,7 @@ import { ICommuniateForceMessage } from "./interfaces/MessageStructures/Communic
 import { ICommunicateRequestMessage } from "./interfaces/MessageStructures/Communication/ICommunicateRequestMessage";
 import { ICommunicateResponseMessage } from "./interfaces/MessageStructures/Communication/ICommunicateResponseMessage";
 import { IReplyMessage } from "./interfaces/MessageStructures/IReplyMessage";
+import { IServerDataMessage } from "./interfaces/MessageStructures/IServerDataMessage";
 import { IServer } from "./interfaces/servers/IServer";
 import { IServerData } from "./interfaces/servers/IServerData";
 import { SERVERS } from "./serverController";
@@ -54,8 +55,8 @@ export class GameServer implements IServer{
     public drop(): void{
         delete SERVERS[this._tag];
     }
-    public updateDataForceAsync = () => this.updateDataForce();
-    public updateDataForce(): Promise<void>{
+    public updateStateForceAsync = () => this.updateStateForce();
+    public updateStateForce(): Promise<void>{
         return new Promise(async res => {
             const packet: IStateCheckHardwareMesasge = {
                 type: HardwareMessageType.STATUS_CHECK
@@ -66,6 +67,16 @@ export class GameServer implements IServer{
                 this._state = reply.success ? "ALIVE" : "BAD";
             }else this._state = "NO_RESPONDING";
             res();
+        });
+    }
+    public updateDataForceAsync = () => this.updateDataForce();
+    public updateDataForce(): Promise<void>{
+        return new Promise(async res => {
+            const data = await this.client.get("update_data", JSON.stringify({}), 1000);
+            if(data.data){
+                this._data = data.data as IServerDataMessage;;
+                res();
+            }else this.updateStateForce().then(res);
         });
     }
     public sendMessage(message: ICommuniateForceMessage): void{

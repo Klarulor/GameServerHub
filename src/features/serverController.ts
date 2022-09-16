@@ -10,10 +10,14 @@ export function setupServerController(){
     setInterval(serverCommunicate, CONFIG.serverController.updateTimeMS);
 }
 
-async function serverCommunicate(){
+function serverCommunicate(){
     for(const k in SERVERS){
         const s = SERVERS[k];
-       s.updateDataForce();
+        s.updateStateForce().then(() => {
+            if(s.state == "ALIVE"){
+                s.updateDataForce();
+            }
+        })
     }
 }
 
