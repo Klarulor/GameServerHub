@@ -79,9 +79,7 @@ export class GameServer implements IServer{
             }else this.updateStateForce().then(res);
         });
     }
-    public sendMessage(message: ICommuniateForceMessage): void{
-
-    }
+    public sendMessage = (message: ICommuniateForceMessage) => this.sendMessageAsync(message);
     public sendMessageAsync(message: ICommunicateRequestMessage): Promise<ICommunicateResponseMessage>{
         return new Promise(async res => {
 
